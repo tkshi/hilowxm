@@ -8,9 +8,9 @@ let hlDriver = new Builder().forBrowser('chrome').build();
 let xmDriver = new Builder().forBrowser('chrome').build();
 
 // 設定
-const REWRIGHTPRICE = '104.01'; //書き換えるレート値
-const REWRIGHTINTERVAL = 500; //レート値を書き換えるインターバル（ミリ秒）
-const REWRIGHTSTART = 30000; //レート値を書き換えが開始するまでの時間（ミリ秒）
+const REWRIGHTPRICE = '122.153'; //書き換えるレート値
+const REWRIGHTINTERVAL = 10; //レート値を書き換えるインターバル（ミリ秒）
+const REWRIGHTSTART = 3000; //レート値を書き換えが開始するまでの時間（ミリ秒）
 
 //
 async function launchHighlow() {
@@ -32,7 +32,7 @@ async function launchHighlow() {
 async function rewriteHighlow() {
   // レートの数値を書き換え
   setInterval(async () => {
-    await hlDriver.executeScript("document.querySelector('#carousel_container .carousel_item:first-child div.instrument-panel-body.ChangingStrikeOOD > div.clearfix.first-child > div:nth-child(2) > div > div.strike-value > span.strike').textContent = '104.01'");
+    await hlDriver.executeScript(`document.querySelector('#carousel_container .carousel_item:first-child div.instrument-panel-body.ChangingStrikeOOD > div.clearfix.first-child > div:nth-child(2) > div > div.strike-value > span.strike').textContent = '${REWRIGHTPRICE}'`);
   }, REWRIGHTINTERVAL);
 }
 
@@ -59,10 +59,10 @@ async function launchXmTrading() {
 async function rewriteXmTrading() {
   // レートの数値を書き換え
   setInterval(async () => {
-    await xmDriver.executeScript("document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(1) > table > tbody > tr:nth-child(3) > td:nth-child(2)').textContent = '104.01'");
-    await xmDriver.executeScript("document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(1) > table > tbody > tr:nth-child(3) > td:nth-child(3)').textContent = '104.01'");
-    await xmDriver.executeScript("document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(2)').textContent = '104.01'");
-    await xmDriver.executeScript("document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(3)').textContent = '104.01'");
+    await xmDriver.executeScript(`document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(1) > table > tbody > tr:nth-child(3) > td:nth-child(2)').textContent = '${REWRIGHTPRICE}'`);
+    await xmDriver.executeScript(`document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(1) > table > tbody > tr:nth-child(3) > td:nth-child(3)').textContent = '${REWRIGHTPRICE}'`);
+    await xmDriver.executeScript(`document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(2)').textContent = '${REWRIGHTPRICE}'`);
+    await xmDriver.executeScript(`document.querySelector('body > div.layout > div.site-canvas > section.container.hidden-xs.hidden-sm > div > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(3)').textContent = '${REWRIGHTPRICE}'`);
   }, REWRIGHTINTERVAL);
 }
 
